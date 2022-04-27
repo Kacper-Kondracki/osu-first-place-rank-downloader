@@ -13,6 +13,7 @@
     'use strict';
 
     async function run() {
+        let showInfo = localStorage.getItem("showinfo") || "true";
         let a = window.location.pathname.split('/').pop();
 
         function isNumeric(value) {
@@ -47,8 +48,17 @@
         let parser = new DOMParser();
         let htmlDocument = parser.parseFromString(text, "text/html");
 
+
+        localStorage.setItem("showinfo", "false");
+
+
+
         let download = htmlDocument.documentElement.getElementsByClassName('download');
         window.open(`https://beatconnect.io/${download[0].getAttribute('href')}`, '_blank');
+        if (showInfo == "true") {
+            alert("Allow popups")
+            window.open(`https://beatconnect.io/${download[0].getAttribute('href')}`, '_blank');
+        }
         window.close();
     }
     // Your code here...
