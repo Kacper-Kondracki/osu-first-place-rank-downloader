@@ -33,13 +33,15 @@
         function checkOsuBeatmap(element) { // https://osu.ppy.sh/beatmaps/736729?mode=osu
             if (!element) return false;
             if (!element.getAttribute('href')) return false;
-            return element.getAttribute('href').startsWith('https://osu.ppy.sh/beatmaps/');
+            return element.getAttribute('href').startsWith('https://osu.ppy.sh/beatmapsets/');
         }
         for(let i = 0; i < links.length; i++) {
+
             let link = links[i];
             if (!checkOsuBeatmap(link)) {
                 continue;
             }
+            console.log(links[i])
             let split = link.getAttribute('href').split('/');
             let mapId = split.pop().split('?').shift();
             if (mapId == 'download' || mapId == "download?noVideo=1") {
